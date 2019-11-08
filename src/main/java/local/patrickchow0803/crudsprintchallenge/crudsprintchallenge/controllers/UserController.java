@@ -28,6 +28,16 @@ public class UserController {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
+    // Get a user's details
+    // http://localhost:2019/users/user/1
+    @GetMapping(value = "/user/{userid}",
+                produces = {"application/json"})
+    public ResponseEntity<?> getUserById(@PathVariable long userid){
+        User getUser = userService.getUserById(userid);
+        return new ResponseEntity<>(getUser, HttpStatus.OK);
+    }
+
+    // Add a user
     // http://localhost:2019/users/user
     @PostMapping(value = "/user", produces = {"application/json"})
     public ResponseEntity<?> addUser(@RequestBody User user){
@@ -43,7 +53,7 @@ public class UserController {
 
         responseHeaders.setLocation(userUri);
 
-        return new ResponseEntity<>("id of new User: " + user.getUserid(), responseHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<>("New User's Id is " + user.getUserid(), responseHeaders, HttpStatus.CREATED);
     }
 
 }
