@@ -17,4 +17,6 @@ public interface UserService {
 
     Todo addTodoToUser(long userid, Todo todo);
 
+    void deleteUserById(long userId);
+
 }

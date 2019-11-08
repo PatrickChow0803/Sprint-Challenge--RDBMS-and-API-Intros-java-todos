@@ -59,11 +59,19 @@ public class UserController {
     }
 
     // Adds todo to a user
-    // http://localhost:2019/users/todo/1
-    @PostMapping(value = "/todo/{id}",
+    // http://localhost:2019/users/todo/4
+    @PostMapping(value = "/todo/{userid}",
                  consumes = {"application/json"})
-    public ResponseEntity<?> addToDo(@RequestBody Todo todo, @PathVariable long id){
-        userService.addTodoToUser(id, todo);
+    public ResponseEntity<?> addToDo(@RequestBody Todo todo, @PathVariable long userid){
+        userService.addTodoToUser(userid, todo);
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+    // Deletes an user
+    // http://localhost:2019/users/userid/4
+    @DeleteMapping(value = "/userid/{userid}")
+    public ResponseEntity<?> deleteUser(@PathVariable long userid){
+        userService.deleteUserById(userid);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

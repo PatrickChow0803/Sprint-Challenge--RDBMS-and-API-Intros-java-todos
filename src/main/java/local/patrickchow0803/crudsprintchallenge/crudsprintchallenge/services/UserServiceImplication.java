@@ -77,4 +77,10 @@ public class UserServiceImplication implements UserService{
 
         return todoRepo.save(newTodo);
     }
+
+    @Override
+    public void deleteUserById(long userId) {
+        User getUser = getUserById(userId);
+        userRepo.delete(getUser);
+    }
 }
