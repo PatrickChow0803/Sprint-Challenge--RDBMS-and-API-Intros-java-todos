@@ -1,5 +1,7 @@
 package local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +25,18 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany
-    @JoinTable(name = "userroles",
-    joinColumns = @JoinColumn(name = "userid"),
-    inverseJoinColumns = @JoinColumn(name = "roleid"))
-    List<Role> roles = new ArrayList<>();
-
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    List<Todo> todos = new ArrayList<>();
+    @JsonIgnoreProperties("user")
+    private List<Todo> todos = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "userroles",
+            joinColumns = @JoinColumn(name = "userid"),
+            inverseJoinColumns = @JoinColumn(name = "roleid"))
+    @JsonIgnoreProperties("users")
+    private List<Role> roles = new ArrayList<>();
 
     public User(){}
 

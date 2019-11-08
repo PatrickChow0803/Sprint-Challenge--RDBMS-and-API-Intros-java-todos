@@ -1,6 +1,8 @@
 package local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -13,6 +15,9 @@ public class Role {
     @Column(unique = true,
             nullable = false)
     private String rolename;
+
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users = new ArrayList<>();
 
     public Role(){}
 
@@ -34,5 +39,13 @@ public class Role {
 
     public void setRolename(String rolename) {
         this.rolename = rolename;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

@@ -1,6 +1,9 @@
 package local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "todos")
@@ -12,17 +15,18 @@ public class Todo {
 
     @Column(nullable = false)
     private String description;
-    private String datestarted;
+    private Date datestarted;
     private boolean completed = false;
 
     @ManyToOne
     @JoinColumn(name = "userid",
                 nullable = false)
+    @JsonIgnoreProperties("todos")
     private User user;
 
     public Todo(){}
 
-    public Todo(String description, String datestarted, boolean completed, User user) {
+    public Todo(String description, Date datestarted, boolean completed, User user) {
         this.description = description;
         this.datestarted = datestarted;
         this.completed = completed;
@@ -45,11 +49,11 @@ public class Todo {
         this.description = description;
     }
 
-    public String getDatestarted() {
+    public Date getDatestarted() {
         return datestarted;
     }
 
-    public void setDatestarted(String datestarted) {
+    public void setDatestarted(Date datestarted) {
         this.datestarted = datestarted;
     }
 
