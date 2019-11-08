@@ -17,7 +17,7 @@ public class Todo {
     @Column(nullable = false)
     private String description;
     private Date datestarted;
-    private boolean completed;
+    private boolean completed = false;
 
     @ManyToOne
     @JoinColumn(name = "userid",
