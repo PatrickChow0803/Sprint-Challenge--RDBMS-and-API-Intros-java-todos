@@ -14,4 +14,25 @@ public class Role {
             nullable = false)
     private String rolename;
 
+    public Role(){}
+
+    public Role(String rolename) {
+        this.rolename = rolename;
+    }
+
+    public long getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(long roleid) {
+        this.roleid = roleid;
+    }
+
+    public String getRolename() {
+        return rolename;
+    }
+
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
 }
