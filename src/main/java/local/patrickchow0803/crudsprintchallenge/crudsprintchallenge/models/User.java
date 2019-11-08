@@ -36,6 +36,12 @@ public class User {
 
     public User(){}
 
+    public User(String username, String primaryemail, String password) {
+        this.username = username;
+        this.primaryemail = primaryemail;
+        this.password = password;
+    }
+
     public User(String username, String primaryemail, String password, List<Role> roles, List<Todo> todos) {
         this.username = username;
         this.primaryemail = primaryemail;

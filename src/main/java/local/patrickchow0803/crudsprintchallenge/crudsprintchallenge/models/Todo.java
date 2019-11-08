@@ -10,9 +10,10 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long todoid;
 
+    @Column(nullable = false)
     private String description;
     private String datestarted;
-    private boolean completed;
+    private boolean completed = false;
 
     @ManyToOne
     @JoinColumn(name = "userid",
