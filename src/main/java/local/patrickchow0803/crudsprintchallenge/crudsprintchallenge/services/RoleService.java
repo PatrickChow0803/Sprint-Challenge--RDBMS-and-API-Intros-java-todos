@@ -4,5 +4,5 @@ import local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.models.Role
 public interface RoleService {
 
     // Save a role
-    public Role save(Role role);
+    Role save(Role role);
 }

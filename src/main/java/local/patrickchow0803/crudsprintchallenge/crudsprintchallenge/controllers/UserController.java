@@ -64,7 +64,7 @@ public class UserController {
                  consumes = {"application/json"})
     public ResponseEntity<?> addToDo(@RequestBody Todo todo, @PathVariable long userid){
         userService.addTodoToUser(userid, todo);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>("Added new Todo", HttpStatus.OK);
     }
     // Deletes an user
     // http://localhost:2019/users/userid/4
@@ -72,6 +72,6 @@ public class UserController {
     public ResponseEntity<?> deleteUser(@PathVariable long userid){
         userService.deleteUserById(userid);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Deleted User successfully", HttpStatus.OK);
     }
 }
