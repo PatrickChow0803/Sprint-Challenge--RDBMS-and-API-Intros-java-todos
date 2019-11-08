@@ -1,5 +1,6 @@
 package local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.controllers;
 
+import local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.models.Todo;
 import local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.models.User;
 import local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,8 @@ public class UserController {
 
     // Add a user
     // http://localhost:2019/users/user
-    @PostMapping(value = "/user", produces = {"application/json"})
+    @PostMapping(value = "/user",
+                 consumes = {"application/json"})
     public ResponseEntity<?> addUser(@RequestBody User user){
         user = userService.addUser(user);
 
@@ -56,4 +58,12 @@ public class UserController {
         return new ResponseEntity<>("New User's Id is " + user.getUserid(), responseHeaders, HttpStatus.CREATED);
     }
 
+    // Adds todo to a user
+    // http://localhost:2019/users/todo/1
+    @PostMapping(value = "/todo/{id}",
+                 consumes = {"application/json"})
+    public ResponseEntity<?> addToDo(@RequestBody Todo todo, @PathVariable long id){
+        userService.addTodoToUser(id, todo);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
 }
