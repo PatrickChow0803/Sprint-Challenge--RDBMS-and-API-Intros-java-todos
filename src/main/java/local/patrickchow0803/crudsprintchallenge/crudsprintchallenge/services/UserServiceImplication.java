@@ -29,7 +29,7 @@ public class UserServiceImplication implements UserService{
 
     @Transactional
     @Override
-    public User user(User user) {
+    public User save(User user) {
         return userRepo.save(user);
     }
 
@@ -59,7 +59,7 @@ public class UserServiceImplication implements UserService{
         }
 
         for (Todo todo : user.getTodos()){
-            Todo newTodo = new Todo(todo.getDescription(), todo.getDatestarted(), todo.isCompleted(), newUser);
+            Todo newTodo = new Todo(todo.getDescription(), todo.getDatestarted(), newUser);
             newUser.getTodos().add(newTodo);
         }
 

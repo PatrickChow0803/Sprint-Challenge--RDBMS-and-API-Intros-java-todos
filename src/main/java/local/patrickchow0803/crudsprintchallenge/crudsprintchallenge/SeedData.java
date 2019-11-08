@@ -1,27 +1,26 @@
 package local.patrickchow0803.crudsprintchallenge.crudsprintchallenge;
-/*
-import com.lambdaschool.todo.models.Role;
-import com.lambdaschool.todo.models.Todo;
-import com.lambdaschool.todo.models.User;
-import com.lambdaschool.todo.services.RoleService;
-import com.lambdaschool.todo.services.UserService;
+
+import local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.models.Role;
+import local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.models.Todo;
+import local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.models.User;
+import local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.services.RoleService;
+import local.patrickchow0803.crudsprintchallenge.crudsprintchallenge.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 @Transactional
 @Component
 public class SeedData implements CommandLineRunner {
+
     @Autowired
     RoleService roleService;
 
     @Autowired
     UserService userService;
-
 
     @Override
     public void run(String[] args) throws Exception {
@@ -89,4 +88,3 @@ public class SeedData implements CommandLineRunner {
         userService.save(u5);
     }
 }
-*/

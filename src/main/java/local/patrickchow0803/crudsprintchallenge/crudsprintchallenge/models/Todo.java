@@ -11,12 +11,13 @@ public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
     private long todoid;
 
     @Column(nullable = false)
     private String description;
     private Date datestarted;
-    private boolean completed = false;
+    private boolean completed;
 
     @ManyToOne
     @JoinColumn(name = "userid",
@@ -26,11 +27,11 @@ public class Todo {
 
     public Todo(){}
 
-    public Todo(String description, Date datestarted, boolean completed, User user) {
+    public Todo(String description, Date datestarted, User user) {
         this.description = description;
         this.datestarted = datestarted;
-        this.completed = completed;
         this.user = user;
+        this.completed = false;
     }
 
     public long getTodoid() {

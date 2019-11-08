@@ -12,46 +12,40 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
     private long userid;
 
     @Column(unique = true,
             nullable = false)
     private String username;
 
+    @Column(nullable = false)
+    private String password;
+
     @Column(unique = true,
             nullable = false)
     private String primaryemail;
 
-    @Column(nullable = false)
-    private String password;
 
     @OneToMany(mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+               cascade = CascadeType.ALL,
+               orphanRemoval = true)
     @JsonIgnoreProperties("user")
     private List<Todo> todos = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "userroles",
-            joinColumns = @JoinColumn(name = "userid"),
-            inverseJoinColumns = @JoinColumn(name = "roleid"))
+    @JoinTable (name = "userroles",
+                joinColumns = @JoinColumn(name = "userid"),
+                inverseJoinColumns = @JoinColumn(name = "roleid"))
     @JsonIgnoreProperties("users")
     private List<Role> roles = new ArrayList<>();
 
     public User(){}
 
-    public User(String username, String primaryemail, String password) {
+    public User(String username, String password, String primaryemail) {
         this.username = username;
-        this.primaryemail = primaryemail;
         this.password = password;
-    }
-
-    public User(String username, String primaryemail, String password, List<Role> roles, List<Todo> todos) {
-        this.username = username;
         this.primaryemail = primaryemail;
-        this.password = password;
-        this.roles = roles;
-        this.todos = todos;
     }
 
     public long getUserid() {
@@ -70,14 +64,6 @@ public class User {
         this.username = username;
     }
 
-    public String getPrimaryemail() {
-        return primaryemail;
-    }
-
-    public void setPrimaryemail(String primaryemail) {
-        this.primaryemail = primaryemail;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -86,12 +72,16 @@ public class User {
         this.password = password;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public String getPrimaryemail() {
+        return primaryemail;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setPrimaryemail(String primaryemail) {
+        this.primaryemail = primaryemail;
+    }
+
+    public void addTodo(Todo todo) {
+        todos.add(todo);
     }
 
     public List<Todo> getTodos() {
@@ -100,5 +90,18 @@ public class User {
 
     public void setTodos(List<Todo> todos) {
         this.todos = todos;
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
+        role.getUsers().add(this);
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

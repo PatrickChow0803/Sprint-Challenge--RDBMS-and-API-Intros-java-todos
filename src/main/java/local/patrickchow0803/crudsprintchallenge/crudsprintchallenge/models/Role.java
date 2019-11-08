@@ -10,10 +10,11 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
     private long roleid;
 
-    @Column(unique = true,
-            nullable = false)
+    @Column(nullable = false,
+            unique = true)
     private String rolename;
 
     @ManyToMany(mappedBy = "roles")
